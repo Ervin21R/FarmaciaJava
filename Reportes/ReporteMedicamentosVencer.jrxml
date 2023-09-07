@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="039a92a1-749b-4024-a0f9-be7fed29af1e">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     empresaclientedelsoftware.`id_empresaClienteDelSoftware` AS empresaclientedelsoftware_id_empresaClienteDelSoftware,
+     empresaclientedelsoftware.`nombre_empresaCDSF` AS empresaclientedelsoftware_nombre_empresaCDSF,
+     empresaclientedelsoftware.`nit_empresaCDSF` AS empresaclientedelsoftware_nit_empresaCDSF,
+     empresaclientedelsoftware.`direccion_empresaCDSF` AS empresaclientedelsoftware_direccion_empresaCDSF,
+     empresaclientedelsoftware.`celular_empresaCDSF` AS empresaclientedelsoftware_celular_empresaCDSF,
+     empresaclientedelsoftware.`telefono_empresaCDSF` AS empresaclientedelsoftware_telefono_empresaCDSF,
+     empresaclientedelsoftware.`ubicacion_empresaCDSF` AS empresaclientedelsoftware_ubicacion_empresaCDSF,
+     producto.`id_producto` AS producto_id_producto,
+     producto.`nombre_producto` AS producto_nombre_producto,
+     producto.`codigo_barras_producto` AS producto_codigo_barras_producto,
+     producto.`cantidad_stock_producto` AS producto_cantidad_stock_producto,
+     producto.`precio_producto` AS producto_precio_producto,
+     producto.`fecha_vencimiento_producto` AS producto_fecha_vencimiento_producto,
+     producto.`descripcion_producto` AS producto_descripcion_producto,
+     producto.`id_laboratorio_producto` AS producto_id_laboratorio_producto,
+     producto.`id_proveedor_producto` AS producto_id_proveedor_producto,
+     producto.`id_imagen_producto` AS producto_id_imagen_producto,
+     laboratorio.`id_laboratorio` AS laboratorio_id_laboratorio,
+     laboratorio.`nombre_laboratorio` AS laboratorio_nombre_laboratorio,
+     proveedor.`id_proveedor` AS proveedor_id_proveedor,
+     proveedor.`nombre_proveedor` AS proveedor_nombre_proveedor,
+     proveedor.`apellido_proveedor` AS proveedor_apellido_proveedor,
+     proveedor.`cedula_proveedor` AS proveedor_cedula_proveedor,
+     proveedor.`celular_proveedor` AS proveedor_celular_proveedor,
+     proveedor.`correo_proveedor` AS proveedor_correo_proveedor,
+     proveedor.`empresa_proveedor` AS proveedor_empresa_proveedor,
+     proveedor.`tel_empresa_proveedor` AS proveedor_tel_empresa_proveedor,
+     proveedor.`dir_empresa_proveedor` AS proveedor_dir_empresa_proveedor
+FROM
+     `laboratorio` laboratorio INNER JOIN `producto` producto ON laboratorio.`id_laboratorio` = producto.`id_laboratorio_producto`
+     INNER JOIN `proveedor` proveedor ON producto.`id_proveedor_producto` = proveedor.`id_proveedor`,
+     `empresaclientedelsoftware` empresaclientedelsoftware WHERE
+     curdate() >= date_sub(fecha_vencimiento_producto,INTERVAL 45 DAY)  AND cantidad_stock_producto>0 ORDER BY fecha_vencimiento_producto]]>
+	</queryString>
+	<field name="empresaclientedelsoftware_id_empresaClienteDelSoftware" class="java.lang.Integer"/>
+	<field name="empresaclientedelsoftware_nombre_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_nit_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_direccion_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_celular_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_telefono_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_ubicacion_empresaCDSF" class="java.lang.String"/>
+	<field name="producto_id_producto" class="java.lang.Integer"/>
+	<field name="producto_nombre_producto" class="java.lang.String"/>
+	<field name="producto_codigo_barras_producto" class="java.lang.String"/>
+	<field name="producto_cantidad_stock_producto" class="java.lang.Integer"/>
+	<field name="producto_precio_producto" class="java.math.BigDecimal"/>
+	<field name="producto_fecha_vencimiento_producto" class="java.sql.Timestamp"/>
+	<field name="producto_descripcion_producto" class="java.lang.String"/>
+	<field name="producto_id_laboratorio_producto" class="java.lang.Integer"/>
+	<field name="producto_id_proveedor_producto" class="java.lang.Integer"/>
+	<field name="producto_id_imagen_producto" class="java.lang.Integer"/>
+	<field name="laboratorio_id_laboratorio" class="java.lang.Integer"/>
+	<field name="laboratorio_nombre_laboratorio" class="java.lang.String"/>
+	<field name="proveedor_id_proveedor" class="java.lang.Integer"/>
+	<field name="proveedor_nombre_proveedor" class="java.lang.String"/>
+	<field name="proveedor_apellido_proveedor" class="java.lang.String"/>
+	<field name="proveedor_cedula_proveedor" class="java.lang.Integer"/>
+	<field name="proveedor_celular_proveedor" class="java.lang.String"/>
+	<field name="proveedor_correo_proveedor" class="java.lang.String"/>
+	<field name="proveedor_empresa_proveedor" class="java.lang.String"/>
+	<field name="proveedor_tel_empresa_proveedor" class="java.lang.String"/>
+	<field name="proveedor_dir_empresa_proveedor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="142" y="11" width="262" height="55" uuid="8a0c38c8-857c-4374-a1cc-f2688636c6fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Medicamentos Proximos a Vencer]]></text>
+			</staticText>
+			<image>
+				<reportElement x="25" y="8" width="60" height="58" uuid="65c8cb34-37ee-4883-8018-1f4300016f89"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Farmacia\\src\\vista\\Imagenes\\only Logo icon 60x58.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="404" y="11" width="151" height="20" uuid="624d1d52-e253-42b7-8fef-8b9068536b17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="91" splitType="Stretch">
+			<textField>
+				<reportElement x="193" y="0" width="185" height="20" uuid="e05e4c24-8a1d-40d1-8e56-f598f681b42c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresaclientedelsoftware_nombre_empresaCDSF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="193" y="20" width="185" height="20" uuid="6845eef0-5d87-48ed-990f-afc2f3f24b8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresaclientedelsoftware_nit_empresaCDSF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="193" y="40" width="185" height="20" uuid="0bbe5e8c-4447-499b-b47e-4990e3c8f1ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresaclientedelsoftware_direccion_empresaCDSF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="98" height="20" backcolor="#006699" uuid="ff3cf283-92d2-4e00-9a33-b49ae919f088"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="98" y="0" width="115" height="20" backcolor="#006699" uuid="3318d015-c5b1-4ef1-8a11-5ea755b0f73a"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo Barras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="0" width="39" height="20" backcolor="#006699" uuid="c004aa35-687b-4413-9f15-766d9ce62987"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="316" y="0" width="88" height="20" backcolor="#006699" uuid="24cecc6e-4f83-4b78-aaa3-0ae723dcd1bf"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre provee.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="213" y="0" width="64" height="20" backcolor="#006699" uuid="434e78bb-1f86-4676-9a34-e41cb0697a0c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laboratorio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="404" y="0" width="85" height="20" backcolor="#006699" uuid="dc96741e-5a83-4d6b-a9f3-030cc23c7b64"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="489" y="0" width="65" height="20" backcolor="#006699" uuid="45a61038-4d24-482e-b8f2-a1c48124d6fc"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vencimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="0000000">
+				<reportElement x="0" y="0" width="98" height="20" uuid="e90e9973-f89a-4652-9613-63d39190cdef"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="98" y="0" width="115" height="20" uuid="496c3695-20f7-4a04-9a1c-0350dcd867d7"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_codigo_barras_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="39" height="20" uuid="4fcaeaad-5865-422d-a70a-de4416fcbfef"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_cantidad_stock_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="88" height="20" uuid="f00a1318-729f-4514-9a61-e54a47eb0088"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proveedor_nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="0" width="64" height="20" uuid="b2dc7cd3-b909-4e44-ab25-efe13badd611"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{laboratorio_nombre_laboratorio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="85" height="20" uuid="701415d0-818a-44ba-b257-175b66ab1d65"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proveedor_celular_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="489" y="0" width="65" height="20" uuid="3e647eca-169d-4f13-9c65-2158f88a0daa"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_fecha_vencimiento_producto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="212" y="10" width="80" height="20" uuid="af0f0c8e-bded-4dc4-b664-7dc7b31ef38b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="292" y="10" width="40" height="20" uuid="bb7475ea-dfb1-4643-ac3e-b1e7d0f17091"/>
+				<textElement>
+					<font fontName="Leelawadee" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="2" splitType="Stretch"/>
+	</summary>
+</jasperReport>

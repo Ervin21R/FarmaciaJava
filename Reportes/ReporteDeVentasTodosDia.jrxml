@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="039a92a1-749b-4024-a0f9-be7fed29af1e">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parametroFecha" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     usuario.`id_usuario` AS usuario_id_usuario,
+     usuario.`primer_nombre_usuario` AS usuario_primer_nombre_usuario,
+     usuario.`segundo_nombre_usuario` AS usuario_segundo_nombre_usuario,
+     usuario.`primer_apellido_usuario` AS usuario_primer_apellido_usuario,
+     usuario.`segundo_apellido_usuario` AS usuario_segundo_apellido_usuario,
+     usuario.`cedula_usuario` AS usuario_cedula_usuario,
+     usuario.`cargo_usuario` AS usuario_cargo_usuario,
+     usuario.`correo` AS usuario_correo,
+     usuario.`id_cargo_usuario` AS usuario_id_cargo_usuario,
+     usuario.`nickname_usuario` AS usuario_nickname_usuario,
+     usuario.`password_usuario` AS usuario_password_usuario,
+     usuario.`ultima_sesion` AS usuario_ultima_sesion,
+     factura.`id_factura` AS factura_id_factura,
+     factura.`consecutivo_factura` AS factura_consecutivo_factura,
+     factura.`forma_pago_factura` AS factura_forma_pago_factura,
+     factura.`fecha_emision_factura` AS factura_fecha_emision_factura,
+     factura.`descuentos_factura` AS factura_descuentos_factura,
+     factura.`iva_factura_venta` AS factura_iva_factura_venta,
+     factura.`subtotal_factura` AS factura_subtotal_factura,
+     factura.`total_factura` AS factura_total_factura,
+     factura.`estado_factura` AS factura_estado_factura,
+     factura.`id_cliente_factura` AS factura_id_cliente_factura,
+     factura.`id_usuario_factura` AS factura_id_usuario_factura,
+     factura.`notas_factura` AS factura_notas_factura,
+     empresaclientedelsoftware.`id_empresaClienteDelSoftware` AS empresaclientedelsoftware_id_empresaClienteDelSoftware,
+     empresaclientedelsoftware.`nombre_empresaCDSF` AS empresaclientedelsoftware_nombre_empresaCDSF,
+     empresaclientedelsoftware.`nit_empresaCDSF` AS empresaclientedelsoftware_nit_empresaCDSF,
+     empresaclientedelsoftware.`direccion_empresaCDSF` AS empresaclientedelsoftware_direccion_empresaCDSF,
+     empresaclientedelsoftware.`celular_empresaCDSF` AS empresaclientedelsoftware_celular_empresaCDSF,
+     empresaclientedelsoftware.`telefono_empresaCDSF` AS empresaclientedelsoftware_telefono_empresaCDSF,
+     empresaclientedelsoftware.`ubicacion_empresaCDSF` AS empresaclientedelsoftware_ubicacion_empresaCDSF
+FROM
+     `usuario` usuario INNER JOIN `factura` factura ON usuario.`id_usuario` = factura.`id_usuario_factura`,
+     `empresaclientedelsoftware` empresaclientedelsoftware WHERE
+     fecha_emision_factura LIKE $P{parametroFecha} ORDER BY primer_nombre_usuario]]>
+	</queryString>
+	<field name="usuario_id_usuario" class="java.lang.Integer"/>
+	<field name="usuario_primer_nombre_usuario" class="java.lang.String"/>
+	<field name="usuario_segundo_nombre_usuario" class="java.lang.String"/>
+	<field name="usuario_primer_apellido_usuario" class="java.lang.String"/>
+	<field name="usuario_segundo_apellido_usuario" class="java.lang.String"/>
+	<field name="usuario_cedula_usuario" class="java.lang.Integer"/>
+	<field name="usuario_cargo_usuario" class="java.lang.String"/>
+	<field name="usuario_correo" class="java.lang.String"/>
+	<field name="usuario_id_cargo_usuario" class="java.lang.Integer"/>
+	<field name="usuario_nickname_usuario" class="java.lang.String"/>
+	<field name="usuario_password_usuario" class="java.lang.String"/>
+	<field name="usuario_ultima_sesion" class="java.sql.Timestamp"/>
+	<field name="factura_id_factura" class="java.lang.Integer"/>
+	<field name="factura_consecutivo_factura" class="java.lang.Integer"/>
+	<field name="factura_forma_pago_factura" class="java.lang.String"/>
+	<field name="factura_fecha_emision_factura" class="java.sql.Timestamp"/>
+	<field name="factura_descuentos_factura" class="java.math.BigDecimal"/>
+	<field name="factura_iva_factura_venta" class="java.math.BigDecimal"/>
+	<field name="factura_subtotal_factura" class="java.math.BigDecimal"/>
+	<field name="factura_total_factura" class="java.math.BigDecimal"/>
+	<field name="factura_estado_factura" class="java.lang.String"/>
+	<field name="factura_id_cliente_factura" class="java.lang.Integer"/>
+	<field name="factura_id_usuario_factura" class="java.lang.Integer"/>
+	<field name="factura_notas_factura" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_id_empresaClienteDelSoftware" class="java.lang.Integer"/>
+	<field name="empresaclientedelsoftware_nombre_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_nit_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_direccion_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_celular_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_telefono_empresaCDSF" class="java.lang.String"/>
+	<field name="empresaclientedelsoftware_ubicacion_empresaCDSF" class="java.lang.String"/>
+	<variable name="TotalVendido" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{factura_total_factura}]]></variableExpression>
+	</variable>
+	<variable name="numeroVentas" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{factura_total_factura}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="171" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="11" width="555" height="88" uuid="8a0c38c8-857c-4374-a1cc-f2688636c6fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Ventas Del Dia Todos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="28" y="11" width="60" height="58" uuid="b7eedc60-3673-47b6-96af-e1f28b486790"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Farmacia\\src\\vista\\Imagenes\\only Logo icon 60x58.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="170" y="69" width="205" height="20" uuid="c4b35e96-3e73-4001-a00e-d7eb9343ac23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="99" width="100" height="20" uuid="ed19693e-9d58-4622-bbd9-ccaf2c98bc67"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresaclientedelsoftware_nombre_empresaCDSF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="119" width="100" height="20" uuid="b5c3afe3-ce7a-4c82-abcc-253b5d6f49a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nit "+$F{empresaclientedelsoftware_nit_empresaCDSF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="139" width="100" height="20" uuid="e3fc0918-c769-42b1-b124-30ac7049b8ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresaclientedelsoftware_direccion_empresaCDSF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="429" y="0" width="126" height="22" backcolor="#006699" uuid="64a0b32d-f53b-4fa3-9c0e-a0b01d59453b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="243" y="0" width="86" height="22" backcolor="#006699" uuid="35e878ae-70f0-4245-b8a5-0bec4bc5892a"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="328" y="0" width="102" height="22" backcolor="#006699" uuid="57ba29ba-b9f1-4889-ad34-f53752f968f5"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consecutivo fac.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="86" height="22" backcolor="#006699" uuid="f941124a-35d5-4fb5-82af-e2090d94b8b0"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="85" y="0" width="86" height="22" backcolor="#006699" uuid="01f255c9-2b9a-4b9c-866a-2c6a54dcc4d7"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="170" y="0" width="74" height="22" backcolor="#006699" uuid="943ae68c-0827-4193-8239-e667a28dc9ae"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="430" y="0" width="125" height="20" uuid="d25cb98a-d98a-4f4a-ad6c-d4238895ae07"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_total_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="0" width="84" height="20" uuid="b3650505-d873-494e-9522-2e67092fe772"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_cedula_usuario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0000000">
+				<reportElement x="328" y="0" width="102" height="20" uuid="5eb27519-de24-4d72-af2d-edbf6487df83"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura_consecutivo_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="85" height="20" uuid="4a0195cd-70e2-48ae-a965-22fe486ae218"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_primer_nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="0" width="85" height="20" uuid="509475bc-af0b-47ae-82c7-2b1efba77533"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_primer_apellido_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="74" height="20" uuid="cd0ee509-24cf-44a9-8a04-8a4e04aa20ea"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_cargo_usuario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="204" y="0" width="80" height="20" uuid="8eb8712e-3dbf-4c55-b876-763b2e6d6cd7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="284" y="0" width="40" height="20" uuid="6b9f27de-4558-4431-9260-aa6ca98bc121"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="258" y="33" width="99" height="20" backcolor="#006699" uuid="2e4b91af-7b1b-47ca-a5f5-a257da2901c9"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Vendido :]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="357" y="33" width="132" height="20" uuid="d33f9e71-4835-42bd-b1d8-bf5b98cfa597"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TotalVendido}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="357" y="13" width="132" height="20" uuid="5d36f19a-4f0c-4fae-a9fa-38c780bfb342"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Leelawadee" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{numeroVentas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="258" y="13" width="99" height="20" backcolor="#006699" uuid="9652190a-4a50-4978-beb2-2fc162dd334c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Leelawadee" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Ventas :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
