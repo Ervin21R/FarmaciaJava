@@ -1,1 +1,2 @@
 # FarmaciaJava
+Software para Farmacia 
